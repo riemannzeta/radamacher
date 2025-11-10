@@ -99,6 +99,7 @@ Example output showing that the simpler group selection model generalizes as wel
 
 ## **Project Structure**
 
+```
 radamacher/  
 ├── main.py                 \# Main analysis script  
 ├── pyproject.toml          \# Project dependencies and metadata  
@@ -106,6 +107,7 @@ radamacher/
 ├── README.md               \# This file  
 ├── RadamacherComparison.png  \# Example output visualization  
 └── results.txt             \# Example console output (not included in repo)
+```
 
 ## **Scientific Context**
 
@@ -120,6 +122,7 @@ By comparing model complexity and generalization, this analysis provides a compu
 
 You can modify the experiment parameters in main() (main.py:707):
 
+```python
 experiment \= TemporalCausalityExperiment(
     n\_individuals=50,     \# Number of individuals in the population
     n\_timepoints=300,     \# Length of time series
@@ -130,6 +133,7 @@ results\_df \= experiment.run\_complexity\_comparison(
     max\_lags=\[3, 5, 10\],  \# Different temporal lag lengths to test
     n\_runs=5              \# Number of experimental replications
 )
+```
 
 ## **License**
 
