@@ -105,7 +105,7 @@ radamacher/
 ├── pyproject.toml          \# Project dependencies and metadata  
 ├── uv.lock                 \# Locked dependency versions  
 ├── README.md               \# This file  
-├── RadamacherComparison.png  \# Example output visualization  
+├── comparison.png          \# Example output visualization  
 └── results.txt             \# Example console output (not included in repo)
 ```
 
