@@ -1,3 +1,10 @@
+============================================================
+Testing Rademacher Complexity of Temporal Causal Models
+Comparing Kin Selection vs Group Selection
+============================================================
+
+1. Running complexity comparison experiments...
+
 === Summary Statistics ===
                            rademacher_complexity         test_error         n_parameters
                                             mean     std       mean     std         mean
@@ -17,16 +24,36 @@ True model: kin
   Group selection - Error: 0.0094, Complexity: 0.0161
   ✗ Complex kin model shows advantage
 
-2. Testing temporal causality (NTW's claim)...
+2. Testing temporal causality (NTW's claim) with enhanced parameters...
+This may take a few minutes due to increased sample sizes...
 
-=== Temporal Causality Test ===
-Complexity (correct: cause→effect): 0.0093
-Complexity (wrong: consequence→effect): 0.0090
-Complexity ratio (wrong/correct): 0.97
+=== Enhanced Temporal Causality Test ===
+Testing whether wrong causal direction increases model complexity
+
+Enhanced features:
+  - 8 causal factors with different time scales
+  - 5 hidden states with decay rates 0.85 to 0.99
+  - 15 confounders (autocorrelated, periodic, trending)
+  - 3000 time points for better statistical power
+  - 5 regularization values tested
+  - 1000 Rademacher samples
+
+Complexity measurements (best regularization):
+  Correct (causes→effect):      0.0040 (α=10.0)
+  Wrong (consequence→effect):   0.0024 (α=10.0)
+  Ratio (wrong/correct):        0.61
+
+Predictive error:
+  Correct direction:            0.0107
+  Wrong direction:              0.0110
+  Error ratio (wrong/correct):  1.04
+
+Combined difficulty ratio:      0.82
+
 ✗ Result does not clearly support NTW's claim
+  The consequence may still contain sufficient information
 
 3. Generating visualizations...
-
 
 ============================================================
 CONCLUSIONS
