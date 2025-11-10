@@ -118,19 +118,19 @@ By comparing model complexity and generalization, this analysis provides a compu
 
 ## **Customization**
 
-You can modify the experiment parameters in main() (main.py:707):
+You can modify the experiment parameters in main() (main.py:707-717):
 
 ```python
-experiment \= TemporalCausalityExperiment(
-    n\_individuals=50,     \# Number of individuals in the population
-    n\_timepoints=300,     \# Length of time series
-    n\_groups=5            \# Number of groups/colonies
-)
-
-results\_df \= experiment.run\_complexity\_comparison(
-    max\_lags=\[3, 5, 10\],  \# Different temporal lag lengths to test
-    n\_runs=5              \# Number of experimental replications
-)
+    experiment = TemporalCausalityExperiment(
+        n_individuals=50,  # Reduced for faster computation
+        n_timepoints=300,
+        n_groups=5
+    )
+    ...
+    results_df = experiment.run_complexity_comparison(
+        max_lags=[3, 5, 10],
+        n_runs=5  # Reduced for faster demonstration
+    )
 ```
 
 ## **License**
