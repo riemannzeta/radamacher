@@ -58,7 +58,9 @@ This will create a virtual environment and install all required dependencies spe
 
 Run the complete analysis:
 
+```bash
 uv run python main.py
+```
 
 The script will:
 
