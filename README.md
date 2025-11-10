@@ -87,13 +87,9 @@ The analysis produces two types of output:
 
 ## **Output Examples**
 
-### **RadamacherComparison.png**
+### **comparison.png**
 
-This visualization compares the two models across multiple dimensions. Key insights:
-
-* The kin selection model has orders of magnitude more parameters than the group selection model  
-* Higher Rademacher complexity generally correlates with higher test error  
-* The group selection model shows better parameter efficiency (lower complexity per parameter)
+This visualization compares the two models across multiple dimensions.
 
 ### **results.txt**
 
