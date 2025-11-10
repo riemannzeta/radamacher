@@ -132,11 +132,3 @@ You can modify the experiment parameters in main() (main.py:707-717):
         n_runs=5  # Reduced for faster demonstration
     )
 ```
-
-## **License**
-
-MIT
-
-## **Citation**
-
-If you use this code in your research, please cite appropriately.
