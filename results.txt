@@ -1,0 +1,37 @@
+=== Summary Statistics ===
+                           rademacher_complexity         test_error         n_parameters
+                                            mean     std       mean     std         mean
+true_model test_model                                                                   
+group      group_selection                0.0092  0.0007     0.0103  0.0001         90.0
+           kin_selection                  0.0144  0.0007     0.0103  0.0001       7350.0
+kin        group_selection                0.0161  0.0003     0.0094  0.0001         90.0
+           kin_selection                  0.0142  0.0015     0.0094  0.0001       7350.0
+
+True model: group
+  Kin selection - Error: 0.0103, Complexity: 0.0144
+  Group selection - Error: 0.0103, Complexity: 0.0092
+  ✓ Simpler group model generalizes as well with lower complexity
+
+True model: kin
+  Kin selection - Error: 0.0094, Complexity: 0.0142
+  Group selection - Error: 0.0094, Complexity: 0.0161
+  ✗ Complex kin model shows advantage
+
+2. Testing temporal causality (NTW's claim)...
+
+=== Temporal Causality Test ===
+Complexity (correct: cause→effect): 0.0093
+Complexity (wrong: consequence→effect): 0.0090
+Complexity ratio (wrong/correct): 0.97
+✗ Result does not clearly support NTW's claim
+
+3. Generating visualizations...
+
+
+============================================================
+CONCLUSIONS
+============================================================
+1. GROUP SELECTION SUFFICIENT: Simple group model generalizes
+   as well as complex kin model for group selection dynamics
+3. EFFICIENCY: Group selection is 0.0x more
+   parameter-efficient than kin selection
