@@ -1,0 +1,94 @@
+================================================================================
+ROBUST CAUSAL ANALYSIS OF EUSOCIALITY EVOLUTION
+Integrating Agent-Based Modeling, Causal Discovery, and Sensitivity Analysis
+================================================================================
+
+1. DATA GENERATION (Agent-Based Model)
+--------------------------------------------------
+Simulating 500 independent evolutionary runs...
+Generating data from 500 ABM simulations...
+
+Data Summary:
+       ecological_pressure  ...  worker_retention
+count              500.000  ...           500.000
+mean                 0.502  ...             0.477
+std                  0.288  ...             0.283
+min                  0.002  ...             0.000
+25%                  0.254  ...             0.244
+50%                  0.513  ...             0.463
+75%                  0.745  ...             0.680
+max                  1.000  ...             1.000
+
+[8 rows x 7 columns]
+
+2. CAUSAL DISCOVERY (PC Algorithm)
+--------------------------------------------------
+Attempting to recover causal structure from observational data...
+Running PC Algorithm for Causal Discovery...
+  Edge ecological_pressure-resource_availability removed (indep given [])
+  Edge ecological_pressure-worker_retention removed (indep given [])
+  Edge eusociality-worker_retention removed (indep given [])
+  Edge relatedness-worker_retention removed (indep given [])
+  Edge colony_formation-worker_retention removed (indep given [])
+  Edge avg_colony_size-worker_retention removed (indep given [])
+  Edge ecological_pressure-relatedness removed (indep given ['eusociality'])
+  Edge relatedness-avg_colony_size removed (indep given ['ecological_pressure'])
+  Edge resource_availability-eusociality removed (indep given ['avg_colony_size', 'relatedness'])
+  Edge resource_availability-relatedness removed (indep given ['colony_formation', 'eusociality'])
+  Edge eusociality-avg_colony_size removed (indep given ['resource_availability', 'ecological_pressure'])
+  Found V-structure: colony_formation -> resource_availability <- worker_retention
+  Found V-structure: avg_colony_size -> resource_availability <- worker_retention
+  Found V-structure: ecological_pressure -> colony_formation <- resource_availability
+  Found V-structure: ecological_pressure -> colony_formation <- relatedness
+  Found V-structure: resource_availability -> colony_formation <- eusociality
+  Found V-structure: eusociality -> colony_formation <- avg_colony_size
+  Found V-structure: relatedness -> colony_formation <- avg_colony_size
+  Found V-structure: ecological_pressure -> avg_colony_size <- resource_availability
+
+Learned Edges:
+  ecological_pressure -> eusociality
+  ecological_pressure -> colony_formation
+  ecological_pressure -> avg_colony_size
+  eusociality -> ecological_pressure
+  eusociality -> relatedness
+  eusociality -> colony_formation
+  relatedness -> eusociality
+  relatedness -> colony_formation
+  avg_colony_size -> colony_formation
+  worker_retention -> resource_availability
+
+Structure Validation:
+  [MISSING] Edge 'colony_formation -> eusociality' NOT found.
+  [SUPPORT] Edge 'relatedness -> eusociality' found.
+
+3. SENSITIVITY ANALYSIS (Hidden Confounders)
+--------------------------------------------------
+Testing robustness of 'Colony Formation -> Eusociality' link against hidden confounders.
+  Observed Correlation (Colony -> Eusociality): 0.5667
+
+  Simulating hidden confounder U with varying strength...
+  (Gamma represents the degree of hidden bias)
+  Gamma = 1.0 (Confounder str ≈ 0.00): Adjusted Corr = 0.5667
+  Gamma = 1.5 (Confounder str ≈ 0.20): Adjusted Corr = 0.5487
+  Gamma = 2.0 (Confounder str ≈ 0.33): Adjusted Corr = 0.5126
+  Gamma = 2.5 (Confounder str ≈ 0.43): Adjusted Corr = 0.4692
+  Gamma = 3.0 (Confounder str ≈ 0.50): Adjusted Corr = 0.4223
+  Gamma = 5.0 (Confounder str ≈ 0.67): Adjusted Corr = 0.2201
+
+  Robustness Limit (Gamma): 1.0
+  -> SENSITIVE: A moderate unobserved confounder could explain this result.
+
+4. INSTRUMENTAL VARIABLE ANALYSIS
+--------------------------------------------------
+Using 'Ecological Pressure' as an instrument for Colony Formation.
+  Stage 1 (Relevance): Eco -> Colony (R²=0.0448, p=1.7725e-06)
+  Stage 2 (Causal Effect): Predicted Colony -> Eusociality
+  IV Estimate of Causal Effect: 0.0514 (p=7.1483e-95)
+  OLS Estimate (Naive): 0.0081
+  [NULL] IV analysis suggests no causal link (association might be confounded).
+
+================================================================================
+FINAL CONCLUSION
+================================================================================
+The analysis SUPPORTS the Hamilton hypothesis:
+1. Causal Discovery found a direct link from Relatedness to Eusociality.
